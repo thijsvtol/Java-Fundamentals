@@ -15,6 +15,7 @@ public class Student extends Person {
 		super(id, username, password);
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.birthDate = birthDate;
 		this.age = age;
 		this.group = group;
 		this.report = report;

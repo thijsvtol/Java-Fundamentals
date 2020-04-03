@@ -32,43 +32,53 @@ public class MainWindow {
 		gridPane.setVgap(10); // Vertical spacing between grid items
 		gridPane.setHgap(8); // Horizontal spacing between grid items
 		
-		Label pageTitle = new Label("Main panel");
-		GridPane.setConstraints(pageTitle, 0, 0); // column row
+		Label lblPageTitle = new Label("Welcome!");
+		GridPane.setConstraints(lblPageTitle, 0, 0); // column row
 		
-		Button displayStudentsBtn = new Button("Display Students");
-		GridPane.setConstraints(displayStudentsBtn, 0, 1);
+		Button btnDisplayStudents = new Button("Display Students");
+		GridPane.setConstraints(btnDisplayStudents, 0, 1);
 		
-		Button displayTeachersBtn = new Button("Display Teachers");
-		GridPane.setConstraints(displayTeachersBtn, 1, 1);
+		Button btnDisplayTeachers = new Button("Display Teachers");
+		GridPane.setConstraints(btnDisplayTeachers, 1, 1);
 		
-		Button saveReportsBtn = new Button("Save Reports");
-		GridPane.setConstraints(saveReportsBtn, 4, 1);
+		Button btnAddStudent = new Button("Add Students");
+		GridPane.setConstraints(btnAddStudent, 2, 1);
 		
-		Button addStudentsBtn = new Button("Add Students");
-		GridPane.setConstraints(addStudentsBtn, 2, 1);
+		Button btnDisplayReports = new Button("Display Reports");
+		GridPane.setConstraints(btnDisplayReports, 0, 2);
 		
-		Button displayReportsBtn = new Button("Display Reports");
-		GridPane.setConstraints(displayReportsBtn, 3, 1);
+		Button btnEditUser = new Button("Save Reports");
+		GridPane.setConstraints(btnEditUser, 1, 2);
 		
+		Button btnSaveReports = new Button("Save Reports");
+		GridPane.setConstraints(btnSaveReports, 2, 2);
 		
 		if (currentUser instanceof Student || currentUser instanceof Teacher || currentUser instanceof Manager) {
 			// show options for a student
-			gridPane.getChildren().addAll(pageTitle, displayStudentsBtn, displayTeachersBtn);
+			gridPane.getChildren().addAll(lblPageTitle, btnDisplayStudents, btnDisplayTeachers);
 		}
 		if (currentUser instanceof Teacher || currentUser instanceof Manager) {
 			// show options for a teacher
-			
-			
-			gridPane.getChildren().addAll(addStudentsBtn, displayReportsBtn);
+			gridPane.getChildren().addAll(btnAddStudent, btnDisplayReports, btnEditUser);
 		}
 		if (currentUser instanceof Manager) {
 			// show options for a manager
+			gridPane.getChildren().addAll(btnSaveReports);
 		}
 		
-		displayStudentsBtn.setOnAction(new EventHandler<ActionEvent>() {
+		btnDisplayStudents.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
+				new DisplayStudents(userList, currentUser);
+				window.close();
+			}
+		});
+		
+		btnDisplayTeachers.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new DisplayTeachers(userList, currentUser);
+				window.close();
 			}
 		});
 		

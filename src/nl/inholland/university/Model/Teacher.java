@@ -11,6 +11,9 @@ public class Teacher extends Person {
 	
 	public Teacher(int id, String username,  String password, String firstName, String lastName, LocalDate birthDate, int age, double salary) {
 		super(id, username, password);
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthDate = birthDate;
 		this.age = age;
 		this.salary = salary;
 	}
