@@ -1,4 +1,4 @@
-package nl.inholland.university;
+package nl.inholland.university.Model;
 
 public abstract class Person {
 	
