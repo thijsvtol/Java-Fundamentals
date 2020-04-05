@@ -42,6 +42,7 @@ public class DisplayStudents {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void setupScene() {
 		// TODO Auto-generated method stub
 		Stage window = new Stage();
