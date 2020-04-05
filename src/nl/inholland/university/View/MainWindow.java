@@ -41,7 +41,7 @@ public class MainWindow {
 		Button btnDisplayTeachers = new Button("Display Teachers");
 		GridPane.setConstraints(btnDisplayTeachers, 1, 1);
 		
-		Button btnAddStudent = new Button("Add Students");
+		Button btnAddStudent = new Button("Add Student");
 		GridPane.setConstraints(btnAddStudent, 2, 1);
 		
 		Button btnDisplayReports = new Button("Display Reports");
@@ -78,6 +78,14 @@ public class MainWindow {
 			@Override
 			public void handle(ActionEvent event) {
 				new DisplayTeachers(userList, currentUser);
+				window.close();
+			}
+		});
+		
+		btnAddStudent.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new AddStudent(userList, currentUser);
 				window.close();
 			}
 		});
