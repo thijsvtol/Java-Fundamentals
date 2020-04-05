@@ -23,8 +23,8 @@ public class App extends Application {
 		userList = getUserList();
 		window.setTitle("University Assignment");
 		Login login = new Login();
-		window.show();
 		login.displayLoginScreen(window, userList);
+		window.show();
 	}
 	
 	private ArrayList<Person> getUserList() {

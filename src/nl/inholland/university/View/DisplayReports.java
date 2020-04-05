@@ -106,7 +106,7 @@ public class DisplayReports {
 		
 		Button btnEditSelectedStudent = new Button("Edit Selected Student");
 		
-		layout.getChildren().addAll(lblTitle, tableView, btnGoBack);
+		layout.getChildren().addAll(lblTitle, tableView, btnEditSelectedStudent, btnGoBack);
 		
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
@@ -124,7 +124,8 @@ public class DisplayReports {
 			@Override
 			public void handle(ActionEvent event) {
 				Student student = tableView.getSelectionModel().getSelectedItem();
-				EditStudentReport studentReport = new EditStudentReport();
+				new EditAddStudentReport(userList, currentUser, student);
+				window.close();
 			}
 		});
 	}
