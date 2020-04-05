@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import nl.inholland.university.Main;
+import nl.inholland.university.Main_Window;
 import nl.inholland.university.Model.Person;
 
 public class Login {
@@ -48,7 +48,7 @@ public class Login {
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Main mainWindow = new Main();
+				Main_Window mainWindow = new Main_Window();
 				mainWindow.setUserList(userList);
 				if(mainWindow.checkUserLogin(userUsername.getText(), userPassword.getText())) {
 					//User can go to manage panel

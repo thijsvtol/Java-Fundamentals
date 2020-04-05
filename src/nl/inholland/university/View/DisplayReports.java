@@ -3,6 +3,7 @@ package nl.inholland.university.View;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,16 +18,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import nl.inholland.university.EditStudentReport;
 import nl.inholland.university.Model.Person;
 import nl.inholland.university.Model.Student;
 
-public class DisplayStudents {
+public class DisplayReports {
 
 	private ArrayList<Person> userList;
 	private ObservableList<Student> students = FXCollections.observableArrayList();
 	private Person currentUser;
 
-	public DisplayStudents(ArrayList<Person> userList, Person currentUser) {
+	public DisplayReports(ArrayList<Person> userList, Person currentUser) {
 		this.userList = userList;
 		this.currentUser = currentUser;
 		getStudents();
@@ -79,12 +81,33 @@ public class DisplayStudents {
 		groupColumn.setCellValueFactory(new PropertyValueFactory<>("group"));
 		groupColumn.setMinWidth(100);
 		
-		tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthDateColumn, ageColumn, groupColumn);
+		TableColumn<Student, Number> cSharpColumn = new TableColumn<>("C#");
+		cSharpColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getReport().getcSharp()));
+		cSharpColumn.setMinWidth(100);
+		
+		TableColumn<Student, Number> javaColumn = new TableColumn<>("Java");
+		javaColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getReport().getJava()));
+		javaColumn.setMinWidth(100);
+		
+		TableColumn<Student, Number> phpColumn = new TableColumn<>("PHP");
+		phpColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getReport().getPhp()));
+		phpColumn.setMinWidth(100);
+		
+		TableColumn<Student, Number> pythonColumn = new TableColumn<>("Python");
+		pythonColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getReport().getPython()));
+		pythonColumn.setMinWidth(100);
+		
+		tableView.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, birthDateColumn, ageColumn, groupColumn, cSharpColumn, javaColumn, phpColumn, pythonColumn);
 		tableView.setItems(students);
 		
-		Label lblTitle = new Label("Student List");
+		Label lblTitle = new Label("Student Reports List");
+		
 		Button btnGoBack = new Button("Go Back");
+		
+		Button btnEditSelectedStudent = new Button("Edit Selected Student");
+		
 		layout.getChildren().addAll(lblTitle, tableView, btnGoBack);
+		
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
 		window.show();
@@ -94,6 +117,14 @@ public class DisplayStudents {
 			public void handle(ActionEvent event) {
 				new MainWindow(userList, currentUser);
 				window.close();
+			}
+		});
+		
+		btnEditSelectedStudent.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Student student = tableView.getSelectionModel().getSelectedItem();
+				EditStudentReport studentReport = new EditStudentReport();
 			}
 		});
 	}

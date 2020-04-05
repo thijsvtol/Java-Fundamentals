@@ -44,4 +44,8 @@ public class Student extends Person {
 	public Report getReport() {
 		return this.report;
 	}
+	
+	public Integer getcSharp() {
+		return report.getcSharp();
+	}
 }

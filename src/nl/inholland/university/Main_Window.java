@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import nl.inholland.university.Model.*;
 import nl.inholland.university.View.MainWindow;;
 
-public class Main {
+public class Main_Window {
 	
 	ArrayList<Person> userList;
 	private Person currentUser;

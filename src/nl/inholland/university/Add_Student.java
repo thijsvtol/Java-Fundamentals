@@ -43,7 +43,7 @@ public class Add_Student {
 			showMessage(AlertType.WARNING, "You can't select a date in the furure!");
 		}
 		else {
-			userList.add(new Student(id, username, password, firstName, lastName, birthDate, age, group, new Report()));
+			userList.add(new Student(id, username, password, firstName, lastName, birthDate, age, group, new Report(0,0,0,0,0)));
 			showMessage(AlertType.CONFIRMATION, "Student succesfully added!");
 		}
 	}
