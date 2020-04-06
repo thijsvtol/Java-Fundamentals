@@ -31,14 +31,14 @@ public class AddStudent {
 		Stage window = new Stage();
 		window.setTitle("Add student");
 		window.setMinWidth(400);
-		window.setMinHeight(500);
+		window.setMinHeight(420);
 		
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(10, 10, 10, 10));
 		gridPane.setVgap(20);
 		gridPane.setHgap(12);
 		
-		Label header = new Label("ADD USER");
+		Label header = new Label("ADD STUDENT");
 		GridPane.setConstraints(header, 0, 0);
 		
 		Label username = new Label("Username:");
@@ -85,7 +85,7 @@ public class AddStudent {
 		GridPane.setConstraints(goBack, 1, 7);
 		
 		gridPane.getChildren().addAll(header, username, studentUsername, password, studentPassword, firstName, studentFirstName, lastName, studentLastName, birthDate, studentBirthDate, group, studentGroup, addStudent, goBack);
-		Scene scene = new Scene(gridPane, 400, 500);
+		Scene scene = new Scene(gridPane, 400, 420);
 		window.setTitle("Add Student");
 		window.setScene(scene);
 		window.show();

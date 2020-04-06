@@ -46,7 +46,7 @@ public class DisplayTeachers {
 	private void setupScene() {
 		// TODO Auto-generated method stub
 		Stage window = new Stage();
-		window.setTitle("Students");
+		window.setTitle("Teachers");
 		window.setMinWidth(250);
 		
 		VBox layout = new VBox();

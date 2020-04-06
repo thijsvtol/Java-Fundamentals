@@ -25,18 +25,25 @@ public class EditStudentReport {
 			}
 		}
 		
-		//Add student to list with new (updated) reports
-		student.getReport().setJava(java);
-		student.getReport().setcSharp(cSharp);
-		student.getReport().setPhp(php);
-		student.getReport().setPython(python);
-		student.getReport().setRetakes(retakes);
-		
-		userList.add(student);
-		
-		Alert a = new Alert(AlertType.CONFIRMATION);
-		a.setContentText("Succesfully edited the report for: " + student.getFirstName() +" "+student.getLastName());
-		a.show();
+		try {
+			//Add student to list with new (updated) reports
+			student.getReport().setJava(java);
+			student.getReport().setcSharp(cSharp);
+			student.getReport().setPhp(php);
+			student.getReport().setPython(python);
+			student.getReport().setRetakes(retakes);
+			
+			userList.add(student);
+			
+			Alert a = new Alert(AlertType.CONFIRMATION);
+			a.setContentText("Succesfully edited the report for: " + student.getFirstName() +" "+student.getLastName());
+			a.show();
+		}
+		catch(Exception e) {
+			Alert a = new Alert(AlertType.WARNING);
+			a.setContentText(e.toString());
+			a.show();
+		}
 	}
 
 	public ArrayList<Person> getUserList() {

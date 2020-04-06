@@ -3,7 +3,7 @@ package nl.inholland.university.Model;
 import java.time.LocalDate;
 
 public class Student extends Person {
-	
+
 	private String firstName;
 	private String lastName;
 	private LocalDate birthDate;
@@ -43,5 +43,21 @@ public class Student extends Person {
 	
 	public Report getReport() {
 		return this.report;
+	}
+	
+	@Override
+	public String toString() {
+		return    "Student ID:    " + getId() + "\r"
+				+ "First name:    " + firstName + "\r"
+				+ "Last name :    " + lastName + "\r"
+				+ "Age       :    " + age  + "\r\r"
+				+ "     COURSES" + "\r\r"
+				+ "Java      :    " + report.getJava() + "\r"
+				+ "PHP       :    " + report.getPhp() + "\r"
+				+ "Pyton     :    " + report.getPython() + "\r"
+				+ "C#        :    " + report.getcSharp() + "\r\r"
+				+ "     RESULTS" + "\r\r"
+				+ "Result    :    " + ((report.getJava() + report.getPhp() + report.getPython() + report.getcSharp()/ 4>= 55)? "Passed" : "Not Passed") + "\r"
+				+ "Retakes   :    " + report.getRetakes();
 	}
 }

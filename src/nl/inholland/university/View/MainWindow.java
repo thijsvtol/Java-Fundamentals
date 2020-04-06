@@ -37,21 +37,27 @@ public class MainWindow {
 		
 		Button btnDisplayStudents = new Button("Display Students");
 		GridPane.setConstraints(btnDisplayStudents, 0, 1);
+		btnDisplayStudents.setMinSize(150, 60);
 		
 		Button btnDisplayTeachers = new Button("Display Teachers");
 		GridPane.setConstraints(btnDisplayTeachers, 1, 1);
+		btnDisplayTeachers.setMinSize(150, 60);
 		
 		Button btnAddStudent = new Button("Add Student");
 		GridPane.setConstraints(btnAddStudent, 2, 1);
+		btnAddStudent.setMinSize(150, 60);
 		
 		Button btnDisplayReports = new Button("Display/Edit Reports");
 		GridPane.setConstraints(btnDisplayReports, 0, 2);
+		btnDisplayReports.setMinSize(150, 60);
 		
 		Button btnEditUser = new Button("Edit user");
 		GridPane.setConstraints(btnEditUser, 1, 2);
+		btnEditUser.setMinSize(150, 60);
 		
 		Button btnSaveReports = new Button("Save Reports");
 		GridPane.setConstraints(btnSaveReports, 2, 2);
+		btnSaveReports.setMinSize(150, 60);
 		
 		if (currentUser instanceof Student || currentUser instanceof Teacher || currentUser instanceof Manager) {
 			// show options for a student
@@ -98,7 +104,15 @@ public class MainWindow {
 			}
 		});
 		
-		Scene scene = new Scene(gridPane, 500, 400);
+		btnSaveReports.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new ExportReports(userList, currentUser);
+				window.close();
+			}
+		});
+		
+		Scene scene = new Scene(gridPane, 500, 250);
 		window.setTitle("Main panel");
 		window.setScene(scene);
 		window.show();

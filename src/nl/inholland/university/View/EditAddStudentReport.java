@@ -33,7 +33,7 @@ public class EditAddStudentReport {
 		Stage window = new Stage();
 		window.setTitle("Edit report of student");
 		window.setMinWidth(400);
-		window.setMinHeight(500);
+		window.setMinHeight(320);
 		
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(10, 10, 10, 10));
@@ -91,7 +91,7 @@ public class EditAddStudentReport {
 		
 		gridPane.getChildren().addAll(header, java, cSharp, python, php, retakes, save, goBack, reportCSharp, reportJava, reportRetakes, reportPhp, reportPython);
 		
-		Scene scene = new Scene(gridPane, 400, 500);
+		Scene scene = new Scene(gridPane, 400, 320);
 		window.setTitle("Edit report");
 		window.setScene(scene);
 		window.show();

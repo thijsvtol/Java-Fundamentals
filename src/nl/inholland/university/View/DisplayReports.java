@@ -10,6 +10,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
@@ -18,7 +20,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import nl.inholland.university.EditStudentReport;
 import nl.inholland.university.Model.Person;
 import nl.inholland.university.Model.Student;
 
@@ -48,7 +49,7 @@ public class DisplayReports {
 	private void setupScene() {
 		// TODO Auto-generated method stub
 		Stage window = new Stage();
-		window.setTitle("Students");
+		window.setTitle("Reports");
 		window.setMinWidth(250);
 		
 		VBox layout = new VBox();
@@ -104,9 +105,11 @@ public class DisplayReports {
 		
 		Button btnGoBack = new Button("Go Back");
 		
-		Button btnEditSelectedStudent = new Button("Edit Selected Student");
+		Button btnEditSelectedStudent = new Button("Edit selected student");
 		
-		layout.getChildren().addAll(lblTitle, tableView, btnEditSelectedStudent, btnGoBack);
+		Button btnDetailView = new Button("View slected student report details");
+		
+		layout.getChildren().addAll(lblTitle, tableView, btnDetailView, btnEditSelectedStudent, btnGoBack);
 		
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
@@ -124,9 +127,37 @@ public class DisplayReports {
 			@Override
 			public void handle(ActionEvent event) {
 				Student student = tableView.getSelectionModel().getSelectedItem();
-				new EditAddStudentReport(userList, currentUser, student);
-				window.close();
+				
+				if (student != null) {
+					new EditAddStudentReport(userList, currentUser, student);
+					window.close();
+				}
+				else {
+					showAlert(AlertType.WARNING,"Please select a student!");
+				}
+				
 			}
 		});
+		
+		btnDetailView.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Student student = tableView.getSelectionModel().getSelectedItem();
+				
+				if (student != null) {
+					new DetailedDisplayReport(userList, currentUser, student);
+					window.close();
+				}
+				else {
+					showAlert(AlertType.WARNING,"Please select a student!");
+				}
+			}
+		});
+	}
+	
+	private void showAlert(AlertType type, String message) {
+		Alert a = new Alert(type);
+		a.setContentText(message);
+		a.show();
 	}
 }

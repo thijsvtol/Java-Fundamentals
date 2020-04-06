@@ -43,7 +43,7 @@ public class Login {
 		GridPane.setConstraints(button, 1, 2);
 		
 		gridPane.getChildren().addAll(username, userUsername, password, userPassword, button);
-		scene = new Scene(gridPane, 300, 200);
+		scene = new Scene(gridPane, 250, 150);
 		window.setScene(scene);
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
