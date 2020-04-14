@@ -105,6 +105,7 @@ public class EditAddStudentReport {
 			}
 		});
 		
+		// Save report
 		save.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

@@ -33,6 +33,7 @@ public class DisplayStudents {
 		setupScene();
 	}
 
+	// Get all students in user list
 	private void getStudents() {
 		// TODO Auto-generated method stub
 		for(Person user : userList) {
@@ -44,7 +45,6 @@ public class DisplayStudents {
 
 	@SuppressWarnings("unchecked")
 	private void setupScene() {
-		// TODO Auto-generated method stub
 		Stage window = new Stage();
 		window.setTitle("Students");
 		window.setMinWidth(250);
@@ -52,6 +52,7 @@ public class DisplayStudents {
 		VBox layout = new VBox();
 		layout.setPadding(new Insets(10, 10, 10, 10));
 			
+		//Set columns
 		TableView<Student> tableView = new TableView<>();
 		tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
@@ -84,11 +85,14 @@ public class DisplayStudents {
 		
 		Label lblTitle = new Label("Student List");
 		Button btnGoBack = new Button("Go Back");
+		
 		layout.getChildren().addAll(lblTitle, tableView, btnGoBack);
+		
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
 		window.show();
 		
+		// Go back to main panel
 		btnGoBack.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

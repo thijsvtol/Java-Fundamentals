@@ -29,7 +29,6 @@ public class ExportReports {
 	}
 	
 	private void setupScene() {
-		// TODO Auto-generated method stub
 		Stage window = new Stage();
 		window.setTitle("Export reports");
 		window.setMinWidth(400);
@@ -65,11 +64,13 @@ public class ExportReports {
         window.setScene(scene);
         window.show();
 	    
+        // get path of selected directory
 	    btnSelectDirectory.setOnAction(e -> {
 	        selectedDirectory = directoryChooser.showDialog(window);
 	        path.setText(selectedDirectory.getAbsolutePath());
 	    });
 	    
+	    // Export students to txt file
 	    btnExport.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
 			public void handle(ActionEvent event) {
@@ -77,6 +78,7 @@ public class ExportReports {
 			}
 	    });
 	    
+	    // Go back to main panel
 	    btnGoBack.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

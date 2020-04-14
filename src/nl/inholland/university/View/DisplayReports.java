@@ -28,6 +28,7 @@ public class DisplayReports {
 	private ArrayList<Person> userList;
 	private ObservableList<Student> students = FXCollections.observableArrayList();
 	private Person currentUser;
+	private Student selectedStudent;
 
 	public DisplayReports(ArrayList<Person> userList, Person currentUser) {
 		this.userList = userList;
@@ -36,6 +37,7 @@ public class DisplayReports {
 		setupScene();
 	}
 
+	// Get all students from user list
 	private void getStudents() {
 		// TODO Auto-generated method stub
 		for(Person user : userList) {
@@ -58,6 +60,7 @@ public class DisplayReports {
 		TableView<Student> tableView = new TableView<>();
 		tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
+		//Set columns
 		TableColumn<Student, Integer> idColumn = new TableColumn<>("Id");
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 		idColumn.setMinWidth(10);
@@ -102,11 +105,8 @@ public class DisplayReports {
 		tableView.setItems(students);
 		
 		Label lblTitle = new Label("Student Reports List");
-		
 		Button btnGoBack = new Button("Go Back");
-		
 		Button btnEditSelectedStudent = new Button("Edit selected student");
-		
 		Button btnDetailView = new Button("View slected student report details");
 		
 		layout.getChildren().addAll(lblTitle, tableView, btnDetailView, btnEditSelectedStudent, btnGoBack);
@@ -115,6 +115,7 @@ public class DisplayReports {
 		window.setScene(scene);
 		window.show();
 		
+		//Go back to main panel
 		btnGoBack.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -123,35 +124,42 @@ public class DisplayReports {
 			}
 		});
 		
+		// Edit selected student in table
 		btnEditSelectedStudent.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Student student = tableView.getSelectionModel().getSelectedItem();
-				
-				if (student != null) {
-					new EditAddStudentReport(userList, currentUser, student);
+				//Check if a student is selected
+				if (selectedStudent != null) {
+					new EditAddStudentReport(userList, currentUser, selectedStudent);
 					window.close();
 				}
 				else {
 					showAlert(AlertType.WARNING,"Please select a student!");
 				}
-				
 			}
 		});
 		
+		// See detailed view of student his report
 		btnDetailView.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Student student = tableView.getSelectionModel().getSelectedItem();
-				
-				if (student != null) {
-					new DetailedDisplayReport(userList, currentUser, student);
+				//Check if student is selected
+				if (selectedStudent != null) {
+					new DetailedDisplayReport(userList, currentUser, selectedStudent);
 					window.close();
 				}
 				else {
 					showAlert(AlertType.WARNING,"Please select a student!");
 				}
 			}
+		});
+		
+		// Set selected user
+		tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+		    if (newSelection != null) {
+		        //set selected student
+		    	selectedStudent = tableView.getSelectionModel().getSelectedItem();
+		    }
 		});
 	}
 	

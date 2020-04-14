@@ -51,27 +51,34 @@ public class MainWindow {
 		GridPane.setConstraints(btnDisplayReports, 0, 2);
 		btnDisplayReports.setMinSize(150, 60);
 		
-		Button btnEditUser = new Button("Edit user");
-		GridPane.setConstraints(btnEditUser, 1, 2);
-		btnEditUser.setMinSize(150, 60);
+		Button btnEditStudent = new Button("Edit student");
+		GridPane.setConstraints(btnEditStudent, 1, 2);
+		btnEditStudent.setMinSize(150, 60);
 		
 		Button btnSaveReports = new Button("Save Reports");
 		GridPane.setConstraints(btnSaveReports, 2, 2);
 		btnSaveReports.setMinSize(150, 60);
 		
+		Scene scene = new Scene(gridPane, 500, 250);
+		window.setTitle("Main panel");
+		window.setScene(scene);
+		window.show();
+		
+		// Decide user rights
 		if (currentUser instanceof Student || currentUser instanceof Teacher || currentUser instanceof Manager) {
 			// show options for a student
 			gridPane.getChildren().addAll(lblPageTitle, btnDisplayStudents, btnDisplayTeachers);
 		}
 		if (currentUser instanceof Teacher || currentUser instanceof Manager) {
 			// show options for a teacher
-			gridPane.getChildren().addAll(btnAddStudent, btnDisplayReports, btnEditUser);
+			gridPane.getChildren().addAll(btnAddStudent, btnDisplayReports, btnEditStudent);
 		}
 		if (currentUser instanceof Manager) {
 			// show options for a manager
 			gridPane.getChildren().addAll(btnSaveReports);
 		}
 		
+		// Go to display students
 		btnDisplayStudents.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -80,6 +87,7 @@ public class MainWindow {
 			}
 		});
 		
+		// Go to display teachers
 		btnDisplayTeachers.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -88,6 +96,7 @@ public class MainWindow {
 			}
 		});
 		
+		// Go to add student
 		btnAddStudent.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -96,6 +105,7 @@ public class MainWindow {
 			}
 		});
 		
+		// Go to display reports of students
 		btnDisplayReports.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -104,6 +114,7 @@ public class MainWindow {
 			}
 		});
 		
+		// Go to export reports to txt file
 		btnSaveReports.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -112,9 +123,13 @@ public class MainWindow {
 			}
 		});
 		
-		Scene scene = new Scene(gridPane, 500, 250);
-		window.setTitle("Main panel");
-		window.setScene(scene);
-		window.show();
+		// Go to edit student
+		btnEditStudent.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				new EditStudent(userList, currentUser);
+				window.close();
+			}
+		});
 	}
 }

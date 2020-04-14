@@ -18,12 +18,7 @@ public class EditStudentReport {
 	
 	public void editReport(int java, int cSharp, int php, int python, int retakes) {
 		//Remove current student from list
-		for (Person user : userList) {
-			if (user.getId() == student.getId()) {
-				userList.remove(user);
-				break;
-			}
-		}
+		userList.remove(student);
 		
 		try {
 			//Add student to list with new (updated) reports

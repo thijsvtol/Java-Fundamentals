@@ -25,6 +25,7 @@ public class Export_Reports {
 	}
 	
 	private void getAllStudents() {
+		// Get all students from user list
 		try {
 			for (Person person : userList) {
 				if (person instanceof Student) {
@@ -43,8 +44,10 @@ public class Export_Reports {
 	}
 
 	private void exportStudentToFile(Student student) throws IOException {
+		//Get file path and add student details
 		file = path.getAbsolutePath()+"\\"+student.getId()+" "+student.getFirstName()+" "+student.getLastName()+".txt";
 		
+		//Write to file
 		BufferedWriter writer = new BufferedWriter(new FileWriter((file)));
 		writer.write("Report of Student "+student.getFirstName()+" "+student.getLastName());writer.newLine();
 		writer.write("");writer.newLine();
@@ -71,7 +74,9 @@ public class Export_Reports {
 	}
 	
 	private String getResult(Student student) {
+		// Check if student has passed the tests
 		int result = 0;
+		// Get all courses in Report model
 		int numberOfCourses = Report.class.getDeclaredFields().length-1;
 		result = student.getReport().getcSharp() + student.getReport().getJava() + student.getReport().getPython() + student.getReport().getPhp();
 		result = result / numberOfCourses;

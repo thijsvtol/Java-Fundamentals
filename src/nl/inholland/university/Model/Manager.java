@@ -5,4 +5,3 @@ public class Manager extends Person {
 		super(id, username, password);
 	}
 }
-

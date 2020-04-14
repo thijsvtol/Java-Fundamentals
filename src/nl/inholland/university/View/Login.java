@@ -7,21 +7,28 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import nl.inholland.university.Main_Window;
+import nl.inholland.university.LoginCheck;
 import nl.inholland.university.Model.Person;
 
 public class Login {
 	
-	Scene scene;
+	private Stage window;
+	private ArrayList<Person> userList;
 	
-	public void displayLoginScreen(Stage window, ArrayList<Person> userList) {
+	public Login(Stage window, ArrayList<Person> userList) {
+		this.window = window;
+		this.userList = userList;
+		displayLoginScreen();
+	}
+	
+	private void displayLoginScreen() {
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(10, 10, 10, 10));
 		gridPane.setVgap(10);
@@ -39,20 +46,23 @@ public class Login {
 		PasswordField userPassword = new PasswordField();
 		GridPane.setConstraints(userPassword, 1, 1);
 		
-		Button button = new Button("Log in");
-		GridPane.setConstraints(button, 1, 2);
+		Button btnLogin = new Button("Log in");
+		GridPane.setConstraints(btnLogin, 1, 2);
 		
-		gridPane.getChildren().addAll(username, userUsername, password, userPassword, button);
-		scene = new Scene(gridPane, 250, 150);
+		gridPane.getChildren().addAll(username, userUsername, password, userPassword, btnLogin);
+		
+		Scene scene = new Scene(gridPane, 250, 150);
+		
 		window.setScene(scene);
-		button.setOnAction(new EventHandler<ActionEvent>() {
+		
+		btnLogin.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				Main_Window mainWindow = new Main_Window();
-				mainWindow.setUserList(userList);
-				if(mainWindow.checkUserLogin(userUsername.getText(), userPassword.getText())) {
+				LoginCheck loginCheck = new LoginCheck(userList);
+				
+				if(loginCheck.checkUserLogin(userUsername.getText(), userPassword.getText())) {
 					//User can go to manage panel
-					mainWindow.showMainWindow();
+					loginCheck.showMainWindow();
 					window.close();
 				}
 				else {

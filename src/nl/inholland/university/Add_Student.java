@@ -22,7 +22,7 @@ public class Add_Student {
 	private String group;
 	
 	public Add_Student(String username, String password, String firstName, String lastName, LocalDate birthDate, String group, ArrayList<Person> users) {
-		setUserList(users);
+		this.userList = users;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -34,8 +34,10 @@ public class Add_Student {
 	}
 
 	private void addStudentToList() {
-		// TODO Auto-generated method stub
+		// Generate ID for a new student
 		int id = getHighestIdNumber()+1;
+		
+		// Check if all fields are filed in and check birth date
 		if (username.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthDate == null || group.isEmpty()) {
 			showMessage(AlertType.WARNING, "Please fill in all the fields!");
 		}
@@ -43,6 +45,7 @@ public class Add_Student {
 			showMessage(AlertType.WARNING, "You can't select a date in the furure!");
 		}
 		else {
+			//Add new student to list
 			userList.add(new Student(id, username, password, firstName, lastName, birthDate, age, group, new Report(0,0,0,0,0)));
 			showMessage(AlertType.CONFIRMATION, "Student succesfully added!");
 		}
@@ -72,10 +75,4 @@ public class Add_Student {
 	public ArrayList<Person> getUserList() {
 		return userList;
 	}
-
-	public void setUserList(ArrayList<Person> userList) {
-		this.userList = userList;
-	}
-	
-	
 }

@@ -16,33 +16,43 @@ public class Report {
 		this.php = php;
 		this.retakes = retakes;
 	}
+	
 	public Integer getJava() {
 		return java;
 	}
+	
 	public void setJava(Integer java) {
 		this.java = java;
 	}
+	
 	public Integer getcSharp() {
 		return cSharp;
 	}
+	
 	public void setcSharp(Integer cSharp) {
 		this.cSharp = cSharp;
 	}
+	
 	public Integer getPython() {
 		return python;
 	}
+	
 	public void setPython(Integer python) {
 		this.python = python;
 	}
+	
 	public Integer getPhp() {
 		return php;
 	}
+	
 	public void setPhp(Integer php) {
 		this.php = php;
 	}
+	
 	public Integer getRetakes() {
 		return retakes;
 	}
+	
 	public void setRetakes(Integer retakes) {
 		this.retakes = retakes;
 	}

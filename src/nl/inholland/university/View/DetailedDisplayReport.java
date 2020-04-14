@@ -53,6 +53,7 @@ public class DetailedDisplayReport {
 		window.setScene(scene);
 		window.show();
 		
+		// Go back to main panel
 		btnGoBack.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

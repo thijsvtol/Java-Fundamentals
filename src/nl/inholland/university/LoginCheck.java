@@ -1,31 +1,33 @@
 package nl.inholland.university;
+
 import java.util.ArrayList;
 
 import nl.inholland.university.Model.*;
 import nl.inholland.university.View.MainWindow;;
 
-public class Main_Window {
+public class LoginCheck {
 	
-	ArrayList<Person> userList;
+	private ArrayList<Person> userList;
 	private Person currentUser;
-
-	public void showMainWindow() {
-		new MainWindow(userList, currentUser);
+	
+	public LoginCheck(ArrayList<Person> userList) {
+		this.userList = userList;
 	}
 	
+	// Check filled in password is the same as the password in the list
 	public Boolean checkUserLogin(String username, String password) {
 		for (Person user : userList) {
 			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-				this.setCurrentUser(user);
+				setCurrentUser(user);
 				return true;
 			}
 		}
 		return false;
 	}
-
-	public void setUserList(ArrayList<Person> userList2) {
-		// TODO Auto-generated method stub
-		this.userList = userList2;
+	
+	// Go to main window if user is logged in
+	public void showMainWindow() {
+		new MainWindow(userList, currentUser);
 	}
 
 	public Person getCurrentUser() {

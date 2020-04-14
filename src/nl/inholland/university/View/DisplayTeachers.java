@@ -29,11 +29,12 @@ public class DisplayTeachers {
 	public DisplayTeachers(ArrayList<Person> userList, Person currentUser) {
 		this.userList = userList;
 		this.currentUser = currentUser;
-		getStudents();
+		getTeachers();
 		setupScene();
 	}
 
-	private void getStudents() {
+	// Get all teachers from user list
+	private void getTeachers() {
 		// TODO Auto-generated method stub
 		for(Person user : userList) {
 			if(user instanceof Teacher) {
@@ -51,7 +52,8 @@ public class DisplayTeachers {
 		
 		VBox layout = new VBox();
 		layout.setPadding(new Insets(10, 10, 10, 10));
-			
+		
+		// Set all columns
 		TableView<Teacher> tableView = new TableView<>();
 		tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
@@ -85,11 +87,14 @@ public class DisplayTeachers {
 		
 		Label lblTitle = new Label("Teacher List");
 		Button btnGoBack = new Button("Go Back");
+		
 		layout.getChildren().addAll(lblTitle, tableView, btnGoBack);
+		
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
 		window.show();
 		
+		// Go back to main panel
 		btnGoBack.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
